@@ -1,0 +1,13 @@
+library(phangorn)
+library(phytools)
+library(msa)
+
+options(stringsAsFactors = FALSE)
+
+### Get a list of all of the fasta files in the Roses folder
+my.files = list.files(path="~/Computational/Final_project/final ", pattern="*ND4.fna", full.names=TRUE)
+
+### Perform the alignment on the first file, and output as Nexus
+seq1 = readDNAStringSet(my.files[1])
+aln1 = msa(seq1, method="ClustalOmega", order="input")
+write.nexus.data(as.DNAbin(aln1), "loc0114.nex")
